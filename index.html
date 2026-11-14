@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Praça de Iporanga – Carro do Walace (multiplayer)</title>
+<title>Resenha na praça – Carro do Walace (multiplayer)</title>
 <style>
 :root{--bg:rgba(255,255,255,.86);--fg:#1b2535;--ac:#2b5fb0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:rgba(20,28,42,.84);--fg:#e8eef8;--ac:#7fb0f0}}
@@ -40,13 +40,13 @@ canvas{display:block;width:100%;height:100%}
 #ctx{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 70px);z-index:6;background:var(--ac);color:#fff;border:0;border-radius:14px;padding:14px 20px;font:600 15px system-ui;cursor:pointer;box-shadow:0 4px 14px #0005}
 @media (pointer:coarse){#ctx{bottom:calc(env(safe-area-inset-bottom,0px) + 200px)}}
 </style></head><body>
-<div id="login" style="display:flex"><div class="card"><h2>Praça de Iporanga</h2><p>Carro do Walace · multiplayer</p><div id="av"></div>
+<div id="login" style="display:flex"><div class="card"><h2>Resenha na praça</h2><p>Carro do Walace · multiplayer</p><div id="av"></div>
 <label>Nome de usuário</label><input id="lname" maxlength="14" placeholder="Seu nome" autocomplete="off">
 <label>Personagem</label><div id="gen"><button data-g="0">Masculino</button><button data-g="1">Feminino</button></div>
 <label>Cor de pele</label><div id="skins"></div>
 <label>Sala (mesmo nome = joga junto)</label><input id="lroom" maxlength="30" placeholder="praca-iporanga" autocomplete="off">
 <button id="go">Entrar na praça</button></div></div>
-<div id="hud"><button id="bg" class="on">Jogar</button><button id="bt">Planta (topo)</button><button id="bp">3ª pessoa</button><button id="bs">🔊 Som do Walace</button><button id="bu">👤 Personagem</button><button id="be">💃 Emotes</button><input id="nick" maxlength="14" placeholder="Seu nome"><input id="rm" maxlength="30" placeholder="Sala" title="Nome da sala: quem usa o mesmo nome joga junto"><span id="who">Offline</span><span id="wal"></span></div><canvas id="mm" width="150" height="112"></canvas><div id="poi"></div><div id="ytwin" style="display:none"><button id="ytx">✕</button><div id="yf"></div></div><div id="em" style="display:none"><button data-e="funk">🕺 Dançar funk (1)</button><button data-e="forro">💃 Forró a dois (2)</button><button data-e="wave">👋 Acenar (3)</button></div><div id="inv" style="display:none"><span id="invt"></span><div><button id="iy">Aceitar</button><button id="in">Recusar</button></div></div><button id="ctx" style="display:none"></button><div id="toast"></div><div id="rad" style="display:none"><button id="radx">✕</button><b>Carro do Walace · Som</b><input id="yt" type="text" placeholder="Link do YouTube"><button id="ytp">▶ YouTube (todos)</button><button id="tab">🎧 Capturar aba (3D)</button><label>Arquivo de áudio<input id="fl" type="file" accept="audio/*" hidden></label><button id="stp">■ Parar</button><div id="lbl"></div><small><b>Arquivo</b> e <b>Capturar aba</b> tocam em 3D de verdade para todos (HRTF: o som vem do porta-malas, muda de lado e cai com a distância). Para o YouTube em 3D: abra o vídeo em outra aba, dê play, clique em Capturar aba e marque “compartilhar áudio da aba” (Chrome/Edge no PC). O botão <b>YouTube</b> usa o player incorporado: ressincroniza a cada 2 s e tem volume por distância, sem direção. O player só aparece perto do carro (✕ esconde).</small></div>
+<div id="hud"><button id="bg" class="on">Jogar</button><button id="bt">Planta (topo)</button><button id="bp">3ª pessoa</button><button id="bs">🔊 Som do Walace</button><button id="bu">👤 Personagem</button><button id="be">💃 Emotes</button><input id="nick" maxlength="14" placeholder="Seu nome"><input id="rm" maxlength="30" placeholder="Sala" title="Nome da sala: quem usa o mesmo nome joga junto"><span id="who">Offline</span><span id="wal"></span></div><canvas id="mm" width="150" height="112"></canvas><div id="poi"></div><div id="ytwin" style="display:none"><button id="ytx">✕</button><div id="yf"></div></div><div id="em" style="display:none"><button data-e="funk">🕺 Dançar funk (1)</button><button data-e="forro">💃 Forró a dois (2)</button><button data-e="wave">👋 Acenar (3)</button><button data-e="bow" id="ebow" style="display:none">🏹 Arco e flecha (4)</button></div><div id="inv" style="display:none"><span id="invt"></span><div><button id="iy">Aceitar</button><button id="in">Recusar</button></div></div><button id="ctx" style="display:none"></button><div id="toast"></div><div id="rad" style="display:none"><button id="radx">✕</button><b>Carro do Walace · Som</b><input id="yt" type="text" placeholder="Link do YouTube"><button id="ytp">▶ YouTube (todos)</button><button id="tab">🎧 Capturar aba (3D)</button><label>Arquivo de áudio<input id="fl" type="file" accept="audio/*" hidden></label><button id="stp">■ Parar</button><div id="lbl"></div><small><b>Arquivo</b> e <b>Capturar aba</b> tocam em 3D de verdade para todos (HRTF: o som vem do porta-malas, muda de lado e cai com a distância). Para o YouTube em 3D: abra o vídeo em outra aba, dê play, clique em Capturar aba e marque “compartilhar áudio da aba” (Chrome/Edge no PC). O botão <b>YouTube</b> usa o player incorporado: ressincroniza a cada 2 s e tem volume por distância, sem direção. O player só aparece perto do carro (✕ esconde).</small></div>
 <div id="pad"><div id="dp"><span></span><button data-k="w">▲</button><span></span><button data-k="a">◀</button><button data-k="s">▼</button><button data-k="d">▶</button></div><div id="ac"><button data-k=" ">⤒</button><button id="run">🏃</button><button id="vw">👁</button><button id="snd">🔊</button><button id="emb">💃</button></div></div>
 <div id="hint">WASD andar · Shift correr · Espaço pular · mouse/arraste olha ao redor · V = 3ª pessoa</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -180,7 +180,7 @@ function ac(){if(AC)return AC;AC=new(window.AudioContext||window.webkitAudioCont
  pan=AC.createPanner();pan.panningModel='HRTF';pan.distanceModel='inverse';pan.refDistance=3;pan.rolloffFactor=1.3;pan.maxDistance=300;ps(pan,CARX,1,CARZ+1.5);anl.connect(pan);pan.connect(AC.destination);return AC}
 ['pointerdown','keydown'].forEach(e=>addEventListener(e,()=>{if(AC&&AC.state!='running')AC.resume()}));
 function dCar(){return Math.hypot(PL.x-CARX,PL.z-(CARZ+1.5))}
-function toast(t){toastEl.textContent=t;toastEl.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>toastEl.style.display='none',1800)}
+function toast(t,ms){toastEl.textContent=t;toastEl.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>toastEl.style.display='none',ms||1800)}
 function togRad(force){const o=force===undefined?rad.style.display=='none':force;if(o&&dCar()>NEAR){toast('Chegue perto do carro do Walace para mexer no som');return}rad.style.display=o?'block':'none';if(o&&document.exitPointerLock)document.exitPointerLock()}
 $('bs').onclick=()=>togRad();$('radx').onclick=()=>togRad(false);$('ytx').onclick=()=>{ytHide=true;ytwin.classList.add('far')};
 $('run').onclick=()=>{K.shift=!K.shift;$('run').classList.toggle('on',!!K.shift)};$('vw').onclick=()=>B.p.onclick();$('snd').onclick=()=>togRad();
@@ -238,6 +238,16 @@ const hair=new THREE.Mesh(new THREE.SphereGeometry(.17,14,10,0,Math.PI*2,0,Math.
 const lL=limb(-.13,.85,.17,.85,mt(0x394a6b),1),lR=limb(.13,.85,.17,.85,mt(0x394a6b),1),aL=limb(-.34,1.48,.13,.62,mt(0xf08a24)),aR=limb(.34,1.48,.13,.62,mt(0xf08a24));
 const PL={x:X(827),y:0,z:Z(650),vy:0,face:Math.PI,on:1};
 
+/* Helpers para construir a flecha para todo mundo */
+const cordaM = M(0xdddddd), flechaM = M(0x222222), penaM = M(0xff2020);
+function mkFlecha(){
+    const fg = new THREE.Group();
+    const h = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 1.0), flechaM); h.rotation.x = Math.PI / 2;
+    const p = new THREE.Mesh(new THREE.ConeGeometry(0.025, 0.08), cordaM); p.position.z = 0.5; p.rotation.x = Math.PI / 2;
+    const pe = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.05, 0.12), penaM); pe.position.z = -0.45;
+    fg.add(h, p, pe); S.add(fg); fg.visible = false; return fg;
+}
+
 /* câmeras */
 const O=new THREE.OrthographicCamera(-1,1,1,-1,.1,400);O.position.set(0,120,0);O.up.set(0,0,-1);O.lookAt(0,0,0);
 const Pc=new THREE.PerspectiveCamera(55,1,.2,600);Pc.rotation.order='YXZ';
@@ -253,9 +263,9 @@ pad.querySelectorAll('button').forEach(b=>{b.onpointerdown=()=>K[b.dataset.k]=1;
 let dr=null;R.domElement.addEventListener('pointerdown',e=>dr=e);addEventListener('pointerup',()=>dr=null);
 R.domElement.addEventListener('click',()=>{if(mode=='g'&&matchMedia('(pointer:fine)').matches&&R.domElement.requestPointerLock)try{R.domElement.requestPointerLock()}catch(_){}});
 addEventListener('mousemove',e=>{if(document.pointerLockElement&&mode=='g'){cy-=e.movementX*.0025;cp=Math.max(-1.3,Math.min(1.3,cp-e.movementY*.0025))}});
-addEventListener('keydown',e=>{if(e.target.tagName=='INPUT')return;const k=e.key.toLowerCase();if(!started)return;if(k=='v')B.p.onclick();if(k=='f')togRad();if(k=='1')doEmote('funk');if(k=='2')doEmote('forro');if(k=='3')doEmote('wave');if(k=='e')actMuki()});
+addEventListener('keydown',e=>{if(e.target.tagName=='INPUT')return;const k=e.key.toLowerCase();if(!started)return;if(k=='v')B.p.onclick();if(k=='f')togRad();if(k=='1')doEmote('funk');if(k=='2')doEmote('forro');if(k=='3')doEmote('wave');if(k=='4')doEmote('bow');if(k=='e')actMuki()});
 addEventListener('pointermove',e=>{if(!dr||mode=='t')return;const dx=e.clientX-dr.clientX,dy=e.clientY-dr.clientY;
- if(mode=='g'){cy-=dx*.005;cp=Math.max(-1.3,Math.min(1.3,cp-dy*.005))}else{yaw-=dx*.005;pitch=Math.max(-1.5,Math.min(1.2,pitch-dy*.005))}dr=e});
+ if(mode=='g'){cy-=dx*.005;cp=Math.max(-1.3,Math.min(1.3,cp-e.movementY*.005))}else{yaw-=dx*.005;pitch=Math.max(-1.5,Math.min(1.2,pitch-dy*.005))}dr=e});
 R.domElement.addEventListener('wheel',e=>{if(mode=='g'&&tp)dist=Math.max(2.5,Math.min(9,dist+e.deltaY*.005));else if(mode=='p'){const f=-e.deltaY*.02;Pc.position.x+=-Math.sin(yaw)*f;Pc.position.z+=-Math.cos(yaw)*f}},{passive:true});
 /* pontos de interesse + minimapa */
 const POI=[[CX0+2.1,CZ0+4,'Igreja Matriz Sant’Ana'],[X(397),Z(660),'Coreto'],[fx,fz,'Jardim da fonte'],[X(620),Z(920),'Jardim principal'],[X(827),Z(535),'Adro e escadaria'],[CARX,CARZ,'Carro do Walace · tecla F abre o som'],[-15.5,-19.6,'Mukifo · aperte E para comprar copão']];
@@ -287,10 +297,17 @@ SKIN.forEach((c,i)=>{const b=document.createElement('button');b.style.background
 [...$('gen').children].forEach(b=>b.onclick=()=>{pickG=+b.dataset.g;paintSk()});
 function paintSk(){[...skb.children].forEach((b,i)=>b.classList.toggle('on',i==pick));[...$('gen').children].forEach(b=>b.classList.toggle('on',+b.dataset.g==pickG));av.classList.toggle('f',!!pickG);av.style.setProperty('--sk','#'+SKIN[pick].toString(16).padStart(6,'0'))}
 function openLogin(){started=false;lname.value=nm;lroom.value=RN;pick=skin;pickG=gend;paintSk();login.style.display='flex';if(document.exitPointerLock)document.exitPointerLock()}
-function enter(){const r=lroom.value.trim()||'praca-iporanga';nm=lname.value.trim().slice(0,14)||nm;skin=pick;gend=pickG;nick.value=nm;
+function enter(){
+ const r=lroom.value.trim()||'praca-iporanga';nm=lname.value.trim().slice(0,14)||nm;skin=pick;gend=pickG;nick.value=nm;
  try{localStorage.setItem('walace_nick',nm);localStorage.setItem('walace_skin',skin);localStorage.setItem('walace_gen',gend)}catch(_){}
  if(r!==RN){location.hash=encodeURIComponent(r);location.reload();return}
- applySkin();applyGender();lastK='';login.style.display='none';started=true}
+ applySkin();applyGender();lastK='';login.style.display='none';started=true;
+ // Destrava a API de voz durante o clique do usuário para que o navegador não bloqueie o áudio
+ if ('speechSynthesis' in window) {
+     const initVoice = new SpeechSynthesisUtterance('');
+     window.speechSynthesis.speak(initVoice);
+ }
+}
 $('go').onclick=enter;lname.onkeydown=e=>{if(e.key=='Enter')enter()};$('bu').onclick=openLogin;paintSk();setTimeout(()=>lname.focus(),50);
 $('rm').onchange=()=>{location.hash=encodeURIComponent($('rm').value.trim()||'praca-iporanga');location.reload()};
 function mpSet(p){if(room)room.presence(p)}
@@ -317,6 +334,119 @@ function animRig(R,e,t,w){const[lL,lR]=R.l,[aL,aR]=R.a;R.root.rotation.z=0;R.roo
  if(e=='funk'){const s=Math.sin(t*10);R.root.rotation.z=s*.09;R.oy=Math.abs(s)*.1;R.torso.rotation.y=s*.3;lL.rotation.x=s*.5;lR.rotation.x=-s*.5;lL.rotation.z=-.2;lR.rotation.z=.2;aL.rotation.z=-(1.7+s*.4);aR.rotation.z=1.7-s*.4}
  else if(e=='wave'){aR.rotation.z=2.5+Math.sin(t*9)*.45;lL.rotation.x=lR.rotation.x=0}
  else if(e=='forro'){const s=Math.sin(t*6);R.root.rotation.z=Math.sin(t*3)*.07;R.oy=Math.abs(s)*.04;lL.rotation.x=s*.35;lR.rotation.x=-s*.35;aL.rotation.x=aR.rotation.x=-1.25;aL.rotation.z=.25;aR.rotation.z=-.25}
+ else if(e=='forro_sozinho'){
+    const s = Math.sin(t * 6.5);
+    R.root.rotation.z = Math.sin(t * 3.25) * 0.06;
+    R.torso.rotation.y = s * 0.15;
+    R.oy = Math.abs(s) * 0.04;
+    aR.rotation.x = -2.6;
+    aR.rotation.z = 0.5;
+    aR.rotation.y = -0.3;
+    aL.rotation.x = -0.5;
+    aL.rotation.z = -0.2;
+    aL.rotation.y = 0;
+    lL.rotation.x = s * 0.2;
+    lR.rotation.x = -s * 0.2;
+    lL.rotation.z = -0.05;
+    lR.rotation.z = 0.05;
+ }
+ else if(e=='bow'){
+    const u = t; 
+    if(R.flechaGroup) R.flechaGroup.visible = true; 
+    aL.updateMatrixWorld(true);
+    aR.updateMatrixWorld(true);
+
+    const easeInOut = k => 0.5 * (1 - Math.cos(Math.PI * k));
+    const easeOut = k => 1 - Math.pow(1 - k, 3);
+
+    if(u < 0.8) {
+        const abaixar = Math.sin((u / 0.8) * Math.PI);
+        R.torso.rotation.x = abaixar * 0.9;
+        R.oy = -abaixar * 0.35;
+        aR.rotation.x = abaixar * 1.5; 
+        aR.rotation.z = abaixar * 0.2;
+        aL.rotation.x = abaixar * 0.3;
+        
+        if(R.flechaGroup) {
+            R.flechaGroup.position.set(R.root.position.x + Math.sin(R.root.rotation.y)*0.6, 0.015, R.root.position.z + Math.cos(R.root.rotation.y)*0.6);
+            R.flechaGroup.rotation.set(0, R.root.rotation.y, 0);
+        }
+
+    } else if (u < 1.5) {
+        const prep = easeInOut((u - 0.8) / 0.7);
+        R.torso.rotation.x = (1 - prep) * 0.9;
+        R.torso.rotation.y = -0.5 * prep;
+        aL.rotation.x = -1.2 * prep; 
+        aL.rotation.z = 0.2 * prep;
+        aR.rotation.x = -1.2 * prep; 
+        
+        if(R.flechaGroup) {
+            const maoR = new THREE.Vector3(0, -0.32, 0).applyMatrix4(aR.matrixWorld);
+            R.flechaGroup.position.copy(maoR);
+            R.flechaGroup.rotation.set(aR.rotation.x, R.root.rotation.y, 0);
+        }
+
+    } else if (u < 2.8) {
+        const aim = Math.min(1, (u - 1.5) / 0.6); 
+        const expand = Math.max(0, (u - 2.1) / 0.7);
+        const smoothAim = easeOut(aim);
+        
+        R.torso.rotation.y = -0.5 - (0.6 * smoothAim);
+        
+        aL.rotation.x = -1.2 - (0.37 * smoothAim); 
+        aL.rotation.z = 0.2 - (0.2 * smoothAim);
+        
+        aR.rotation.x = -1.2 - (0.37 * smoothAim); 
+        aR.rotation.z = 0.85 * smoothAim + (0.05 * expand);
+        aR.rotation.y = -1.1 * smoothAim - (0.1 * expand);
+
+        if(R.flechaGroup) {
+            const maoR = new THREE.Vector3(0, -0.32, 0).applyMatrix4(aR.matrixWorld);
+            R.flechaGroup.position.copy(maoR);
+            R.flechaGroup.rotation.set(0, R.root.rotation.y - R.torso.rotation.y, 0);
+        }
+
+    } else if (u < 4.5) {
+        const releaseTime = u - 2.8;
+        
+        if (releaseTime < 0.15) {
+            const recoil = easeOut(releaseTime / 0.15);
+            aL.rotation.x = -1.57 + (0.05 * recoil);
+            aL.rotation.z = -0.05 * recoil;
+            aR.rotation.y = -1.2 - (0.3 * recoil);
+            aR.rotation.z = 0.9 + (0.2 * recoil); 
+        } else if (releaseTime < 1.0) {
+            aL.rotation.x = -1.52; 
+            aL.rotation.z = -0.05;
+            aR.rotation.y = -1.5; 
+            aR.rotation.z = 1.1; 
+        } else {
+            const fade = easeInOut((releaseTime - 1.0) / 0.7);
+            aL.rotation.x = -1.52 * (1 - fade);
+            aL.rotation.z = -0.05 * (1 - fade);
+            aR.rotation.x = -1.57 * (1 - fade);
+            aR.rotation.y = -1.5 * (1 - fade);
+            aR.rotation.z = 1.1 * (1 - fade);
+            R.torso.rotation.y = -1.1 * (1 - fade);
+        }
+
+        if(R.flechaGroup) {
+            const vooTempo = releaseTime;
+            const dir = new THREE.Vector3(0, 0, 1).applyAxisAngle(new THREE.Vector3(0,1,0), R.root.rotation.y + 1.1);
+            const startPos = new THREE.Vector3(0, 1.45, 0).add(R.root.position).add(dir.clone().multiplyScalar(0.5));
+            
+            R.flechaGroup.position.copy(startPos).add(dir.multiplyScalar(25 * vooTempo)); 
+            R.flechaGroup.position.y -= 2.0 * (vooTempo * vooTempo); 
+            R.flechaGroup.rotation.set(-vooTempo * 0.2, R.root.rotation.y + 1.1, 0);
+        }
+
+    } else {
+        aL.rotation.x = 0;
+        aR.rotation.x = 0;
+        R.torso.rotation.y = 0;
+        if(R.flechaGroup) R.flechaGroup.visible = false;
+    }
+ }
  else{lL.rotation.x=w;lR.rotation.x=-w;aL.rotation.x=-w*.8;aR.rotation.x=w*.8}if(R.dz)R.root.rotation.z+=Math.sin(t*2.2)*.12*R.dz}
 function peerById(id){return room&&id?room.peers().find(p=>p.peer===id):null}
 function setEmote(t,p,ld){EM.t=t;EM.p=p||null;EM.ld=ld?1:0;EM.t0=performance.now();et=0;mpSet({e:t,p:p||'',ld:EM.ld})}
@@ -328,7 +458,7 @@ function inviteNearest(){let b=null,bd=16;for(const o of others){const q=(o.x-PL
  if(!b){toast('Chegue perto de alguém (até 4 m) para convidar para o forró');return}
  const pr=peerById(b.id);if(pr&&pr.presence.e=='forro'){toast('Essa pessoa já está dançando');return}
  pendInv=b.id;window.sendInv(b.id,{t:'invite',n:nm});toast('Convite de forró enviado…');setTimeout(()=>{if(pendInv===b.id)pendInv=null},15000)}
-function doEmote(t){em.style.display='none';
+function doEmote(t){em.style.display='none';if(t=='bow'&&!bowOK){toast('Converse com o Chama para aprender esse sinal');return}
  if(t=='forro'){if(EM.t=='forro'){setEmote('');return}if(!room||!window.sendInv){toast('Forró precisa de outro jogador online');return}inviteNearest();return}
  if(EM.t==t){setEmote('');return}setEmote(t);if(t=='wave')setTimeout(()=>{if(EM.t=='wave')setEmote('')},3200)}
 function onInvite(m,id){if(!m||typeof m!='object')return;const pr=peerById(id),nn=String(pr&&pr.presence.n||m.n||'Alguém').slice(0,14);
@@ -342,19 +472,20 @@ $('in').onclick=()=>{inv.style.display='none';if(invFrom)window.sendInv(invFrom,
 em.querySelectorAll('button').forEach(b=>b.onclick=()=>doEmote(b.dataset.e));
 $('be').onclick=$('emb').onclick=()=>{em.style.display=em.style.display=='none'?'flex':'none'};
 /* ===== MUKIFO: copão, mão segurando, beber e tontura ===== */
-const PRICE=10,MK={x:-15.5,z:-19.6};let wallet=100,hold=false,drinks=0;const DR={on:false,end:0},DZ={on:false,i:0,t0:0,end:0},ctx=$('ctx');
+const PRICE=8,MK={x:-15.5,z:-19.6};let wallet=100,hold=false,drinks=0;const DR={on:false,end:0},DZ={on:false,i:0,t0:0,end:0},ctx=$('ctx');
 try{const w=localStorage.getItem('walace_wallet');if(w!==null&&+w>=0)wallet=+w}catch(_){}
 const cupM=M(0xd62828,{roughness:.35,transparent:true,opacity:.9}),liqM=M(0x7b2cbf,{roughness:.3}),strM=M(0xffffff);
 function makeCup(){const g=new THREE.Group(),c=new THREE.Mesh(new THREE.CylinderGeometry(.075,.055,.24,12,1,true),cupM),l=new THREE.Mesh(new THREE.CylinderGeometry(.068,.05,.18,12),liqM),
  s=new THREE.Mesh(new THREE.CylinderGeometry(.008,.008,.2,6),strM),b=new THREE.Mesh(new THREE.CylinderGeometry(.055,.055,.01,12),cupM);
  l.position.y=-.02;s.position.set(.03,.14,0);s.rotation.z=-.25;b.position.y=-.12;g.add(c,l,s,b);g.position.set(0,-.62,.1);g.visible=false;return g}
-const cupL=makeCup();aR.add(cupL);LR.cup=cupL;
+const cupL=makeCup();aR.add(cupL);LR.cup=cupL;LR.flechaGroup=mkFlecha(); // Atribui flecha física ao jogador local
 function hud(){$('wal').textContent='💵 R$ '+wallet+' · 🍹 '+drinks+'/5'}hud();
 function saveW(){try{localStorage.setItem('walace_wallet',wallet)}catch(_){}hud()}
 function drinkPose(R,left){const p=1-Math.max(0,Math.min(1,left)),k=Math.min(1,p*5)*Math.min(1,(1-p)*5),a=R.a[1];
  a.rotation.x=-2*k+a.rotation.x*(1-k);a.rotation.z=-.55*k;R.root.rotation.x=-.1*k;if(R.cup)R.cup.rotation.x=-a.rotation.x*.85}
 function actMuki(){if(!started||mode!='g'||DR.on)return;
  if(hold){DR.on=true;DR.end=performance.now()+1900;mpSet({dk:1});return}
+ if(nearC()){talkC();return}
  if(Math.hypot(PL.x-MK.x,PL.z-MK.z)>5)return;
  if(wallet<PRICE){toast('Sem dinheiro para o copão');return}
  wallet-=PRICE;hold=true;cupL.visible=true;saveW();mpSet({cp:1});toast('Copão comprado! Aperte E para beber')}
@@ -364,7 +495,7 @@ function stopDizzy(){DZ.on=false;DZ.i=0;mpSet({dz:0});Pc.fov=55;Pc.rotation.z=0;
 function dizzyFx(){if(!DZ.on)return;const s=performance.now()/1000,i=DZ.i;Pc.rotation.z=Math.sin(s*1.6)*.14*i;Pc.fov=55+Math.sin(s*1.1)*9*i;Pc.updateProjectionMatrix();
  R.domElement.style.filter='blur('+((2.2+Math.sin(s*2)*1.2)*i).toFixed(2)+'px) saturate('+(1+.5*i)+') hue-rotate('+(Math.sin(s*.7)*25*i).toFixed(1)+'deg)';cy+=Math.sin(s*.8)*.0035*i}
 function mukiFx(){const now=performance.now(),near=Math.hypot(PL.x-MK.x,PL.z-MK.z)<5;let txt='';
- if(started&&mode=='g'&&!DR.on){if(hold)txt='🥤 Beber (E)';else if(near)txt=wallet>=PRICE?'🍹 Comprar copão R$ '+PRICE+' (E)':'Sem dinheiro para o copão'}
+ if(started&&mode=='g'&&!DR.on){if(hold)txt='🥤 Beber (E)';else if(nearC())txt='🏹 Falar com o Chama (E)';else if(near)txt=wallet>=PRICE?'🍹 Comprar copão R$ '+PRICE+' (E)':'Sem dinheiro para o copão'}
  ctx.style.display=txt?'block':'none';if(ctx.textContent!==txt)ctx.textContent=txt;
  if(DR.on&&now>DR.end)finishDrink();
  if(DZ.on){const left=DZ.end-now;DZ.i=Math.max(0,Math.min(1,(now-DZ.t0)/2500,left/5000));if(left<=0)stopDizzy()}}
@@ -373,7 +504,9 @@ function mkChar(col,sk){const g=new THREE.Group(),m=c=>M(c,{roughness:.8});
  const add=(geo,mat,x,y,z,p=g)=>{const o=new THREE.Mesh(geo,mat);o.position.set(x,y,z);o.castShadow=true;p.add(o);return o};
  g.torso=add(new THREE.BoxGeometry(.5,.66,.28),m(col),0,1.18,0);const skm=m(sk);add(new THREE.SphereGeometry(.16,12,8),skm,0,1.68,0);add(new THREE.SphereGeometry(.17,12,8,0,Math.PI*2,0,Math.PI/2),m(0x2a1c14),0,1.7,-.01);
  const lb=(x,y,w,h,mat)=>{const q=new THREE.Group();q.position.set(x,y,0);add(new THREE.BoxGeometry(w,h,w),mat,0,-h/2,0,q);g.add(q);return q};
- g.l=[lb(-.13,.85,.17,.85,m(0x394a6b)),lb(.13,.85,.17,.85,m(0x394a6b))];g.a=[lb(-.34,1.48,.13,.62,m(col)),lb(.34,1.48,.13,.62,m(col))];g.skm=skm;g.root=g;const fg=femParts();g.add(fg);g.fg=fg;const cp=makeCup();g.a[1].add(cp);g.cup=cp;g.a.forEach(a=>{const h=new THREE.Mesh(new THREE.SphereGeometry(.07,8,6),skm);h.position.y=-.64;a.add(h)});S.add(g);return g}
+ g.l=[lb(-.13,.85,.17,.85,m(0x394a6b)),lb(.13,.85,.17,.85,m(0x394a6b))];g.a=[lb(-.34,1.48,.13,.62,m(col)),lb(.34,1.48,.13,.62,m(col))];g.skm=skm;g.root=g;const fg=femParts();g.add(fg);g.fg=fg;const cp=makeCup();g.a[1].add(cp);g.cup=cp;g.a.forEach(a=>{const h=new THREE.Mesh(new THREE.SphereGeometry(.07,8,6),skm);h.position.y=-.64;a.add(h)});
+ g.flechaGroup = mkFlecha(); // Atribui flecha a todos os players da rede e ao NPC
+ S.add(g);return g}
 function setLabel(g,text){if(g.lab)g.remove(g.lab);const c=document.createElement('canvas');c.width=256;c.height=64;const x=c.getContext('2d');x.fillStyle='rgba(20,20,30,.7)';x.fillRect(0,8,256,48);x.fillStyle='#fff';x.font='bold 30px system-ui';x.textAlign='center';x.fillText(text,128,43);
  const s=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),depthWrite:false}));s.scale.set(1.8,.45,1);s.position.y=2.2;g.add(s);g.lab=s;g.nm=text}
 function remoteDJ(dj,peer){stopAll();djPeerId=null;
@@ -393,7 +526,7 @@ function mpFx(dt){if(!room)return;
   let a=f-r.rotation.y;a=Math.atan2(Math.sin(a),Math.cos(a));r.rotation.y+=a*k;
   const nn=String(d.n||'Jogador').slice(0,14);if(r.nm!==nn)setLabel(r,nn);
   r.wt+=dt*9*(d.m?1:0);r.et=(r.et||0)+dt;const w=d.m?Math.sin(r.wt)*.8:0;r.dz=d.dz?1:0;r.cup.visible=!!d.cp;animRig(r,d.m?'':String(d.e||''),r.et,w);if(d.dk){if(!r.dkT)r.dkT=performance.now();drinkPose(r,1-(performance.now()-r.dkT)/1900)}else r.dkT=0;r.position.y=r.by+r.oy}
- for(const[k,r]of RM)if(!seen.has(k)){S.remove(r);RM.delete(k)}
+ for(const[k,r]of RM)if(!seen.has(k)){S.remove(r);if(r.flechaGroup)S.remove(r.flechaGroup);RM.delete(k)} // Limpa flecha do mapa ao sair
  who.textContent='👥 '+ps_.length+' online';
  if(dj&&dj.tt!==lastTT){lastTT=dj.tt;lastSq=dj.sq;if(!djMe)remoteDJ(dj,djP)}else if(dj&&!djMe&&dj.k=='yt'&&dj.sq!==lastSq){lastSq=dj.sq;syncYT(dj)}}
 /* ===== MUKIFO no mundo: placa, balcão, toldo e atendente ===== */
@@ -406,9 +539,84 @@ const aw=new THREE.Mesh(new THREE.BoxGeometry(6.8,.08,1.5),M(0xffffff,{map:strip
 [-3.2,3.2].forEach(x=>box(.1,2.6,.1,wood,MK.x+x,0,MK.z+.35));
 [[-2,0xd62828],[-1.4,0x2a9d8f],[1.2,0xffd23f],[1.8,0x7b2cbf]].forEach(([x,c])=>{const b=new THREE.Mesh(new THREE.CylinderGeometry(.06,.08,.3,10),M(c,{roughness:.3}));b.position.set(MK.x+x,1.34,MK.z);S.add(b)});
 const bar=mkChar(0xc03030,SKIN[3]);bar.position.set(MK.x,0,MK.z-.75);setLabel(bar,'Deco');
+/* ===== CHAMA: NPC alto que dança, passeia pelo mapa e ensina o sinal do arco e flecha ===== */
+let bowOK=false;try{bowOK=localStorage.getItem('walace_bow')=='1'}catch(_){}if(bowOK)$('ebow').style.display='block';
+const chama=mkChar(0xff4d1a,SKIN[5]);chama.scale.setScalar(1.18);setLabel(chama,'CHAMA');
+
+const CW=[[-6,-10],[-9,-1],[1,3],[4,9],[14,6],[16,-6],[15,-17],[1,-17],[-12,-16]];
+const CACT=['forro_sozinho','bow','forro_sozinho','bow','forro_sozinho','forro_sozinho','bow','forro_sozinho','bow'];
+const CDUR={forro_sozinho:7, bow:4.5};
+const CSEG=[];
+let ctt=0;for(let i=0;i<CW.length;i++){const a=CW[i],b=CW[(i+1)%CW.length],wl=Math.hypot(b[0]-a[0],b[1]-a[1])/1.7;CSEG.push({a,b,t0:ctt,wl,act:CACT[i],ad:CDUR[CACT[i]]});ctt+=wl+CDUR[CACT[i]]}
+const CTOT=ctt;
+function chamaAt(T){T=((T%CTOT)+CTOT)%CTOT;for(const s of CSEG){if(T>=s.t0&&T<s.t0+s.ad+s.wl){const u=T-s.t0,face=Math.atan2(s.b[0]-s.a[0],s.b[1]-s.a[1]);
+  if(u<s.ad)return{x:s.a[0],z:s.a[1],face,act:s.act,k:u};const f=(u-s.ad)/s.wl;return{x:s.a[0]+(s.b[0]-s.a[0])*f,z:s.a[1]+(s.b[1]-s.a[1])*f,face,act:'',k:u-s.ad}}}return{x:CW[0][0],z:CW[0][1],face:0,act:'',k:0}}
+
+function chamaFx(dt){
+    const T=Date.now()/1000,st=chamaAt(T);
+    chama.position.x=st.x;chama.position.z=st.z;
+    let a=st.face-chama.rotation.y;a=Math.atan2(Math.sin(a),Math.cos(a));
+    chama.rotation.y+=a*Math.min(1,dt*8);
+    animRig(chama,st.act,st.k,st.act?0:Math.sin(T*9)*.8);
+    chama.position.y=chama.oy||0;
+
+    if (Math.random() < 0.0015 && (st.act === 'forro_sozinho' || st.act === 'bow')) {
+        falarChama(chama);
+    }
+}
+
+function falarChama(c) {
+    if (c.falando) return;
+    c.falando = true;
+    const oldLabel = c.nm;
+    setLabel(c, "🗣️ CHAMA!");
+
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); 
+        const msg = new SpeechSynthesisUtterance("Chama!");
+        msg.lang = "pt-BR";
+        
+        // Busca vozes com nomes tradicionalmente masculinos ou variantes masculinas
+        const voices = window.speechSynthesis.getVoices();
+        const brVoices = voices.filter(v => v.lang.includes('pt-BR') || v.lang.includes('pt_BR'));
+        
+        const maleVoice = brVoices.find(v => /daniel|thiago|felipe|antônio|antonio|pedro|ricardo|wavenet-b|wavenet-d|standard-b|standard-d/i.test(v.name));
+        
+        if (maleVoice) {
+            msg.voice = maleVoice;
+        } else if (brVoices.length > 0) {
+            // Usa a primeira voz disponível caso não encontre um nome específico
+            msg.voice = brVoices[0];
+        }
+        
+        // Pitch abaixo de 1 deixa a voz mais grave/masculina
+        msg.pitch = 0.8; 
+        msg.rate = 1.0; 
+        msg.volume = 1.0;
+        
+        window.speechSynthesis.speak(msg);
+    }
+
+    let fT = 0;
+    const talkInt = setInterval(() => {
+        fT += 0.1;
+        c.children[1].scale.set(1, 1 + Math.abs(Math.sin(fT * 6)) * 0.12, 1);
+        if (fT > 1.8) {
+            clearInterval(talkInt);
+            c.children[1].scale.setScalar(1);
+            setLabel(c, oldLabel);
+            c.falando = false;
+        }
+    }, 30);
+}
+
+function nearC(){return Math.hypot(PL.x-chama.position.x,PL.z-chama.position.z)<3}
+const CL=['Fala, parceiro! Bora dançar?','O funk não para, irmão!','Flecha certeira, sem arco e sem seta 😎','Aqui é Chama, nunca apaga!'];
+function talkC(){if(!bowOK){bowOK=true;try{localStorage.setItem('walace_bow','1')}catch(_){}$('ebow').style.display='block';toast('🏹 CHAMA: “Toma o sinal do arco e flecha, irmão!” Emote desbloqueado (tecla 4 ou menu 💃)',4200)}
+ else toast('🏹 CHAMA: “'+CL[Math.random()*CL.length|0]+'”',2800)}
 let t0=performance.now();
 (function loop(t){requestAnimationFrame(loop);const dt=Math.min(.05,(t-t0)/1000);t0=t;
- carFx(dt,t);mpFx(dt);mukiFx();if(mode=='g')game(dt);else if(mode=='p'){const v=(K.shift?24:11)*dt,f=(K.w?1:0)-(K.s?1:0),r=(K.d?1:0)-(K.a?1:0);
+ carFx(dt,t);mpFx(dt);mukiFx();chamaFx(dt);if(mode=='g')game(dt);else if(mode=='p'){const v=(K.shift?24:11)*dt,f=(K.w?1:0)-(K.s?1:0),r=(K.d?1:0)-(K.a?1:0);
   Pc.position.x+=(-Math.sin(yaw)*f+Math.cos(yaw)*r)*v;Pc.position.z+=(-Math.cos(yaw)*f-Math.sin(yaw)*r)*v;Pc.position.y=Math.max(1.7,Pc.position.y+((K.e?1:0)-(K.q?1:0))*v);Pc.rotation.set(pitch,yaw,0)}
  R.render(S,mode=='t'?O:Pc)})(t0);
 </script>
